@@ -15,7 +15,7 @@ public class AccountsPage {
 	private ElementUtil elementUtil;
 
 	private By accSections = By.cssSelector("div#content h2");
-	private By header = By.cssSelector("div#logo1 a");
+	private By header = By.cssSelector("div#logo a");
 	private By logoutLink = By.linkText("Logout");
 	private By searchField = By.name("search");
 	private By searchButton = By.cssSelector("div#search button");

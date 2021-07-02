@@ -46,7 +46,7 @@ public class LoginPageTest extends BaseTest {
 	@Test
 	public void loginPageFooterLinksTest() {
 		List<String> footerList = loginPage.getFooterLinks();
-		softAssert.assertEquals(footerList.size(), 16);
+		softAssert.assertEquals(footerList.size(), 15);
 		softAssert.assertTrue(footerList.contains("About Us"));
 		softAssert.assertAll();
 	}
