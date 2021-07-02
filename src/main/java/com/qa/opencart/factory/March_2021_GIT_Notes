@@ -1,0 +1,109 @@
+https://github.com/naveenanimation20/March2021POMSeries
+https://github.com/naveenanimation20/March2021SeleniumSessions
+https://github.com/naveenanimation20/March2021JavaSessions
+
+
+//first commit:
+create a repo at git hub with your account
+
+1. git init
+2. git remote add origin https://github.com/naveenanimation20/March2021POMSeries.git
+3. add .gitignore file
+4. git status
+5. git add .
+6. git status
+7. git commit -m "first framework commit"
+8. git push origin master
+
+
+
+//2. A new member:
+1. get the repo url
+2. clone the repo in your local (drive)
+git clone <repo url>
+3. import the project in your eclipse
+4. start using it -- explore it, debug it, run it
+5. Made some changes in the code, or new file, update the files
+6. git status
+7. git add <files>
+8. git commit -m "reason"
+9. Raise a PR
+10. git push origin <branch>
+
+//3. Local Branching Process
+1. git branch --> master(local)
+2. git branch cart (local)
+3. git checkout cart (local) -- switch to cart branch (local)-- same should be reflected in eclipse
+4. made some changes in cart branch (local)
+5. git add <file>
+6. git commit -m "reason"
+7. git push origin cart (remote)
+8. go to git repo(remote) -- check the changes
+9. new changes should be reflected in cart (remote), not in master (remote)
+
+
+
+//4. PR Process at remote side:
+follow all the steps from : 3. Local Branching Process
+10. Raise a PR in remote with comments
+11. Reviewer will accept/reject the PR
+12. if rejected then: update the code and: add->commit->push to cart (local)
+13. cart in remote is updated wit the latest code (as per review comments)
+14. Reviewer will review the latest cart barnch once again(remote) and approved with comments
+15. if approved then: code is ready to be merged
+16. Requestor will merge cart to master (remote)
+17. now the latest cart changes should be reflected in master branch at remote
+
+
+//5. PULL the code
+18. in your local, switch the branch to master: git checkout master(local)
+19. take the latest pull : git pull origin master
+20. verify the latest code in master (local)
+
+
+//6. An existing team member:
+1. has to take the latest pull from master
+git pull origin master (2.0) -- at local 
+2. is ready with : payment page on payment branch(cut from previous master 1.0) 
+
+//7. Merge Conflict Process:
+1. User1 (remote) has pused the code - LoginPage.java -- m1()
+2. User2 (you) is also working on the same page with same method
+3. User2 will try to take the latest pull --> git pull origin master
+4. Git will throw an error(abort it) saying that it will overwite your local changes. Please stash it or add it.
+5. User2 will stash the local changes -- git stash --> it will add the local changes in stash memory
+6. User2 will try to take the latest pull --> git pull origin master
+7. Pull is successfully done --> remote code is available in WC now
+8. User2 (you) will get the stash code back --> git stash pop
+9. Now the merge conflict will happen
+
+<<<<<<<<remote changes
+
+==========
+
+>>>>>>>>local/stash changes
+
+10. Discuss with the team memeber, and decide the final version of the code
+11. conflict is resolved with local changes...
+12. push the code back to remote --> git push origin master
+13. Other team members (including User1) has to take the latest pull
+
+//8. Reset from remote side:
+1. lets say user1 has pushed the wrong commit/code to the remote
+2. check the commit history: git log --oneline
+3. get the (N-1) previous commit hashcode <h1>
+4. git reset --hard <h1>
+5. then do a force push: git push -f origin master
+
+--> git push -f <h1>:master
+
+
+
+
+
+
+
+
+
+
+
