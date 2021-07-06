@@ -1,56 +1,51 @@
-pipeline{
-    
-    agent any
-    
-    stages{
-        stage("Build"){
+pipeline { 
+agent any 
+    stages { 
+        
+        stage ('Build') { 
             steps{
-                echo "Build the project"
+                echo "Building the test automation for demo cart app"
             }
         }
         
-        stage("Deploy on QA"){
-            steps{
-                echo "deploy on the QA env"
+        stage('Test') {
+            steps {
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    sh "mvn clean install"
+                }
+            }
+        }
+                
+     
+        stage('Publish Allure Reports') {
+           steps {
+                script {
+                    allure([
+                        includeProperties: false,
+                        jdk: '',
+                        properties: [],
+                        reportBuildPolicy: 'ALWAYS',
+                        results: [[path: '/allure-results']]
+                    ])
+                }
             }
         }
         
-        stage("Unit Testing"){
+        
+        stage('Publish Extent Report'){
             steps{
-                echo "run unit test"
+                     publishHTML([allowMissing: false,
+                                  alwaysLinkToLastBuild: false, 
+                                  keepAll: false, 
+                                  reportDir: 'build', 
+                                  reportFiles: 'TestExecutionReport.html', 
+                                  reportName: 'HTML Extent Report', 
+                                  reportTitles: ''])
             }
         }
         
-        stage("Sanity Testing"){
-            steps{
-                echo "run sanity test"
-            }
-        }
         
-        stage("REgression Testing"){
-            steps{
-                echo "run regression test"
-            }
-        }
-        
-       stage("Deploy on stage"){
-            steps{
-                echo "deploy on the stage env"
-            }
-        }
-        
-        stage("Sanity Testing on Stage"){
-            steps{
-                echo "run sanity test on stage"
-            }
-        }
-        
-        stage("Deploy on prod"){
-            steps{
-                echo "deploy on the prod env"
-            }
-        }
         
     }
-    
-}
+
+ }
