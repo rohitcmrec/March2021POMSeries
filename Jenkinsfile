@@ -21,6 +21,36 @@ pipeline{
             }
         }
         
+        stage("Sanity Testing"){
+            steps{
+                echo "run sanity test"
+            }
+        }
+        
+        stage("REgression Testing"){
+            steps{
+                echo "run regression test"
+            }
+        }
+        
+       stage("Deploy on stage"){
+            steps{
+                echo "deploy on the stage env"
+            }
+        }
+        
+        stage("Sanity Testing on Stage"){
+            steps{
+                echo "run sanity test on stage"
+            }
+        }
+        
+        stage("Deploy on prod"){
+            steps{
+                echo "deploy on the prod env"
+            }
+        }
+        
     }
     
 }
