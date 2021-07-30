@@ -44,6 +44,7 @@ public class BaseTest {
 		}
 		driver = df.init_driver(prop);
 		loginPage = new LoginPage(driver);
+		System.out.println("WebHooks");
 	}
 
 	@AfterTest
